@@ -1,0 +1,35 @@
+{
+  "name": "ProjectName",
+  "short_name": "Boilerplate",
+  "display": "standalone",
+  "background_color": "#528c6f",
+  "theme_color": "#528c6f",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "public/favicons/production/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "public/favicons/production/apple-touch-icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "public/favicons/production/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "public/favicons/production/apple-touch-icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "public/favicons/production/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

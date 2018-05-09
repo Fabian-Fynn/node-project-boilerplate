@@ -1,0 +1,42 @@
+.chat-Messages {
+  height: 65vh;
+  background: #528b6e30;
+  border: 1px solid #528b6e;
+  text-shadow: 0 0 black;
+  overflow-x: scroll; }
+  .chat-Messages .chat-Message {
+    clear: both; }
+    .chat-Messages .chat-Message .chat-Message-content, .chat-Messages .chat-Message .chat-Message-content_own {
+      text-align: left;
+      padding: 11px;
+      border: 1px solid #ccc;
+      float: left;
+      margin: 10px;
+      border-radius: 15px;
+      background: #fff;
+      min-width: 100px;
+      max-width: 55%;
+      font-size: 120%; }
+      .chat-Messages .chat-Message .chat-Message-content .chat-Message-time, .chat-Messages .chat-Message .chat-Message-content_own .chat-Message-time {
+        color: #bbb;
+        margin: 0;
+        margin-left: 10px;
+        float: right; }
+    .chat-Messages .chat-Message .chat-Message-content_own {
+      text-align: right;
+      float: right;
+      background: #528c6f;
+      color: #fff; }
+    .chat-Messages .chat-Message .chat-username {
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 90%; }
+
+.chat-Textarea-input {
+  width: 100%;
+  height: 40px;
+  text-align: left;
+  padding: 12px;
+  font-size: 120%; }
+
+/*# sourceMappingURL=home.css.map */

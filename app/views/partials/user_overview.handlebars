@@ -1,0 +1,40 @@
+<div class="page-Section page-Section_fullwidth page-Section_white page-Section_useroverview">
+  <h1>Users</h1>
+  <div class="page-userOverview">
+    <div class="page-userOverview_item page-userOverview_item_mail">
+      <span class="item-mail">Email</span>
+    </div>
+    <div class="page-userOverview_item page-userOverview_item_name">
+      Name
+    </div>
+    <div class="page-userOverview_item page-userOverview_item_roles">
+      Roles
+    </div>
+    <div class="page-userOverview_item page-userOverview_item_options">
+    </div>
+    {{#each users}}
+      <span class="page-userOverview_item_data" data-id="{{_id}}" data-usermail="{{local.email}}" data-roles="{{arrayToString roles}}"></span>
+      <div class="page-userOverview_item page-userOverview_item_mail">
+        <span class="item-mail">{{local.email}}</span>
+      </div>
+      <div class="page-userOverview_item page-userOverview_item_name">
+        <input type="text" class="item-name" value="{{name}}" data-id="{{_id}}"></input>
+      </div>
+      <div class="page-userOverview_item page-userOverview_item_roles">
+        <input type="text" class="item-roles" value="{{arrayToString roles}}" data-id="{{_id}}"></input>
+      </div>
+      <div class="page-userOverview_item page-userOverview_item_options" data-id="{{_id}}">
+        {{#if (hasNotRole roles 'superadmin')}}
+          <i class="item_delete-button button fa fa-trash-o" data-id="{{_id}}"></i>
+        {{/if}}
+        {{#if (hasRole roles 'provisional')}}
+          <i class="item_promote-button button fa fa-thumbs-up" data-id="{{_id}}"></i>
+        {{/if}}
+        <i class="item_save-button button fa fa-floppy-o" data-id="{{_id}}"></i>
+      </div>
+    {{/each}}
+    {{>user_delete_verify}}
+    <div class="content-placeholder"></div>
+  </div>
+  <button type="button" name="button" class="page-button_user_remove_provisional red hidden">Remove all provisional</button>
+  </br>

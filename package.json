@@ -1,0 +1,68 @@
+{
+  "name": "node-project-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/server.js",
+  "scripts": {
+    "lint": "eslint -f table test app seeds",
+    "build": "cp -R app dist && babel app -d dist --source-maps inline",
+    "test": "npm run lint && jest",
+    "test-ci": "jest --coverage --no-colors --forceExit",
+    "start-production": "cross-env NODE_ENV=production npm run build",
+    "start": "cross-env NODE_ENV=development nodemon --watch app --exec babel-node app/server.js",
+    "clean-build": "rm -rf ./dist"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm test"
+    }
+  },
+  "author": "Fabian Hoffmann",
+  "license": "MIT",
+  "jest": {
+    "globals": {
+      "__DEV__": true
+    },
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-watch": "^2.0.7",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "husky": "^0.14.3",
+    "jest": "^22.4.3",
+    "nodemon": "^1.17.4",
+    "nyc": "^11.7.2",
+    "supertest": "^3.0.0"
+  },
+  "dependencies": {
+    "babel-register": "^6.26.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "cat-me": "^1.0.3",
+    "chalk": "^2.4.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "express-routes-mapper": "^1.0.2",
+    "graphql": "^0.13.2",
+    "jsonwebtoken": "^8.2.1",
+    "jwt-decode": "^2.2.0",
+    "mime-types": "^2.1.18",
+    "moment": "^2.22.1",
+    "mongoose": "^5.0.17",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "socket.io": "^2.1.0"
+  }
+}

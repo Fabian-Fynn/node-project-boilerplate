@@ -1,0 +1,30 @@
+{
+  "extends": "airbnb-base",
+  "plugins": [
+    "import"
+  ],
+  "env": {
+    "jest": true,
+    "browser": true,
+    "es6": true,
+    "jquery": true
+  },
+  "rules": {
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "funcStyle": 0,
+    "no-console": 0,
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "_id"
+        ],
+        "allowAfterThis": false
+      }
+    ],
+    "no-unused-vars": 0
+  }
+}

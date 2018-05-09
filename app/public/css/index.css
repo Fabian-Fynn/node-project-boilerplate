@@ -1,0 +1,39 @@
+.item-refresh {
+  cursor: pointer; }
+
+.item-status {
+  display: grid;
+  grid-template-areas: "status title title" "status time time"; }
+
+.item-status_trafficLight {
+  grid-area: status;
+  width: 20px;
+  background-color: gray; }
+  .item-status_trafficLight.app-status-offline {
+    background-color: red; }
+  .item-status_trafficLight.app-status-online {
+    background-color: green; }
+
+.item-status_title {
+  grid-area: title; }
+
+.item-status_time {
+  font-size: 50%;
+  color: #666;
+  grid-area: time; }
+
+.page-appOverview_item_options {
+  text-align: right; }
+
+.page-appOverview_item_data {
+  width: 0;
+  display: none; }
+
+.item-dismiss_notifications {
+  padding: 0 5px;
+  cursor: pointer; }
+
+.item-restart {
+  cursor: pointer; }
+
+/*# sourceMappingURL=index.css.map */

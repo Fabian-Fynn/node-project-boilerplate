@@ -1,0 +1,56 @@
+@import "variables";
+
+.chat-Messages {
+  height: 65vh;
+  background: #528b6e30;
+  border: 1px solid #528b6e;
+  text-shadow: 0 0 black;
+  overflow-x: scroll;
+
+  .chat-Message {
+    clear: both;
+
+    .chat-Message-content, .chat-Message-content_own{
+      text-align: left;
+      padding: 11px;
+      border: 1px solid #ccc;
+      float: left;
+      margin: 10px;
+      border-radius: 15px;
+      background: $color-bright;
+      min-width: 100px;
+      max-width: 55%;
+      font-size: 120%;
+
+      .chat-Message-time {
+        color: #bbb;
+        margin: 0;
+        margin-left: 10px;
+        float: right;
+      }
+    }
+
+    .chat-Message-content_own {
+      text-align: right;
+      float: right;
+      background: $background-main;
+      color: $color-bright;
+
+    }
+
+    .chat-username {
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 90%;
+    }
+  }
+}
+
+.chat-Textarea-input {
+  width: 100%;
+  height: 40px;
+  text-align: left;
+  padding: 12px;
+  font-size: 120%;
+}
+

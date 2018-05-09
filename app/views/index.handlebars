@@ -1,0 +1,15 @@
+{{#if roles}}
+  {{#if (hasRole roles 'provisional')}}
+    {{>provisional_notice}}
+  {{else}}
+    <div class="page-Section page-Section_white page-Section_title">
+      <h1 class="page-Title">
+        Shouldn't be here
+      </h1>
+    </div>
+    </br>
+  {{/if}}
+{{else}}
+  {{>login}}
+{{/if}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/components/dropdown.min.js"></script>
