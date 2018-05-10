@@ -7,18 +7,19 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import mapRoutes from 'express-routes-mapper';
 import exphbs from 'express-handlebars';
+import handlebar from 'handlebars-static';
 import socketio from 'socket.io';
 
 import config from './config';
 import helpers from './views/helpers';
 import publicRoutes from './config/public.routes';
 import adminRoutes from './config/admin.routes';
+import userRoutes from './config/user.routes';
 import adminPolicy from './policies/admin.policy';
 import authPolicy from './policies/auth.policy';
 import chatService from './services/chat.service';
 
-
-var promise = mongoose.connect(config.db);
+mongoose.connect(config.db);
 
 mongoose.Promise = global.Promise;
 
@@ -37,6 +38,7 @@ const env = process.env.NODE_ENV || 'production';
 
 const mappedPublicRoutes = mapRoutes(publicRoutes, 'app/controllers/');
 const mappedAdminRoutes = mapRoutes(adminRoutes, 'app/controllers/');
+const mappedUserRoutes = mapRoutes(userRoutes, 'app/controllers/');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -52,24 +54,42 @@ app.use(express.static('app/public'));
 
 app.set('view engine', 'handlebars');
 
+const renderUnauthIndex = (res) => (
+  res.render('index', {
+    page: 'index',
+    env,
+  })
+);
+
+
 app.use('/public', mappedPublicRoutes);
 app.use('/admin', passport.authenticate('admin-policy', { session: false }), mappedAdminRoutes);
+app.use('/user', passport.authenticate('default-policy', { session: false }), mappedUserRoutes);
 
 app.get('/', (req, res, next) => {
   passport.authenticate('default-policy', { session: true }, (err, authenticatedUser) => {
     if (authenticatedUser) {
       if (authenticatedUser.roles[0] === 'provisional') {
-        return res.render('index', { page: 'index', env, roles: authenticatedUser.roles });
+        return res.render('index', {
+          page: 'index',
+          env,
+          roles: authenticatedUser.roles,
+        });
       }
-      return res.render('home', { page: 'home', env, roles: authenticatedUser.roles, userMail: authenticatedUser.local.email, userName: authenticatedUser.name });
-    } else {
-      return res.render('index', { page: 'index', env });
+      return res.render('home', {
+        page: 'home',
+        env,
+        roles: authenticatedUser.roles,
+        userMail: authenticatedUser.local.email,
+        userName: authenticatedUser.name,
+      });
     }
-    return null;
+    return res.render('index', {
+      page: 'index',
+      env,
+    });
   })(req, res, next);
 });
-
-
 
 app.use((req, res) => {
   res.status(404);

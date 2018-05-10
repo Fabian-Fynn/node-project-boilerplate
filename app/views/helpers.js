@@ -1,3 +1,7 @@
+import handlebarsStatic from 'handlebars-static';
+
+const staticUrl = '/';
+
 exports.eq = function (param, value) {
   return (param && param === value);
 };
@@ -38,4 +42,12 @@ exports.arrayToString = function (array) {
 
 exports.restartDetails = function (details) {
   return `data-activeRestartAction=${details.activeAction} data-bash-host="${details.bash.host}"`;
+};
+
+exports.static = function (...pathParts) {
+  const path = pathParts.reduce((prev, elem) => {
+    if (typeof elem === 'string') return prev + elem;
+    return prev;
+  });
+  return handlebarsStatic(staticUrl)(path);
 };

@@ -1,3 +1,4 @@
+import passport from 'passport';
 import auth from '../services/auth.service';
 import User from '../models/user.model';
 
@@ -16,6 +17,10 @@ const UserController = () => {
         return res.status(500).json({ error: `Could not get User with id: ${req.params.userId}` });
       });
   };
+
+  const getUsers = (req, res) => (
+    User.find({})
+  );
 
   const create = (req, res) => {
     const { email, password } = req.body;
@@ -53,38 +58,37 @@ const UserController = () => {
   };
 
   const update = (req, res) => {
-    const body = req.body;
-
     // because we later have values that are arrays that needs to be pased
     // we use findById and then update
-    User.findById(req.params.userId)
+    User.findById(req.user._id)
       .then((user) => {
         if (!user) {
-          return res.status(404).json({ error: `User with id: ${req.params.userId} not found` });
+          return res.status(404).json({ error: `User with id: ${req.user._id} not found` });
         }
 
-        const firstName = body.firstName ? body.firstName : user.firstName;
-        const lastName = body.lastName ? body.lastName : user.lastName;
-        const birthdate = body.birthdate ? body.birthdate : user.birthdate;
-        const gender = body.gender ? body.gender : user.gender;
+        const name = req.body.name ? req.body.name : user.name;
+        const email = req.body.email ? req.body.email : user.email;
 
         const updateUser = {
-          firstName,
-          lastName,
-          birthdate,
-          gender,
+          name,
+          'local.email': email,
         };
 
-        return User.update({ _id: req.params.userId }, updateUser)
-          .then(() => res.status(200).json({ message: `Successfully updated User with id: ${req.params.userId}` }))
+        return User.update({ _id: req.user._id }, updateUser)
+          .then(() => {
+            User.findById(req.user._id)
+              .then((updatedUser) => {
+                return res.redirect('/user/user-settings');
+              });
+          })
           .catch((err) => /* istanbul ignore next: hard to reproduce */ {
             console.error(err);
-            return res.status(500).json({ error: `Could not update User with id: ${req.params.userId}` });
+            return res.status(500).json({ error: `Could not update User with id: ${req.user._id}` });
           });
       })
       .catch((err) => /* istanbul ignore next: hard to reproduce */ {
         console.error(err);
-        res.status(500).json({ error: `Could not update User with id: ${req.params.userId}` });
+        res.status(500).json({ error: `Could not update User with id: ${req.user._id}` });
       });
   };
 
@@ -131,10 +135,27 @@ const UserController = () => {
     }
   };
 
+  const getSettings = (req, res, next) => {
+    passport.authenticate('default-policy', { session: true }, (err, authenticatedUser) => {
+      return res.render('user_settings', {
+        page: 'user-Settings',
+        env: 'development',
+        roles: authenticatedUser.roles,
+        user: {
+          uid: authenticatedUser._id,
+          email: authenticatedUser.local.email,
+          name: authenticatedUser.name,
+        },
+      });
+    })(req, res, next);
+  };
+
   return {
     create,
     destroy,
     get,
+    getUsers,
+    getSettings,
     update,
     login,
   };
