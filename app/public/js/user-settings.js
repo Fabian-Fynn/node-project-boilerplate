@@ -4,7 +4,7 @@ $('#confirmUserDeleteBtn').click((ev) => {
       if (err) {
         return console.error(err);
       }
-      window.location.href = '/';
+      window.location.href = '/?success-msg=Account successfully deleted.';
     },
   );
 });

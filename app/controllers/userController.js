@@ -52,6 +52,10 @@ const UserController = () => {
           })
           .catch((err) => /* istanbul ignore next: hard to reproduce */ {
             console.error(err);
+            const errorProperties = err.errors[Object.keys(err.errors)[0]].properties;
+            if (errorProperties.type === 'unique' && errorProperties.path === 'local.email') {
+              return res.status(409).json({ error: `A User with the email ${errorProperties.value} already exists.` });
+            }
             return res.status(500).json({ error: 'Could not create User' });
           });
       });
@@ -78,7 +82,7 @@ const UserController = () => {
           .then(() => {
             User.findById(req.user._id)
               .then((updatedUser) => {
-                return res.redirect('/user/user-settings');
+                return res.redirect('/user/user-settings?success-msg=User updated successfully.');
               });
           })
           .catch((err) => /* istanbul ignore next: hard to reproduce */ {

@@ -12,6 +12,9 @@ function displayMessage(type, response) {
   $('.page-Flash').addClass(`page-Flash-${type}`);
   $('.page-Flash').slideDown();
   $('.page-Flash').css('display', 'flex');
+  setTimeout(() => {
+    $('.page-Flash').slideUp();
+  }, 5000);
 }
 
 function sendRequest({ url, method, options }, done) {
@@ -34,6 +37,9 @@ function sendRequest({ url, method, options }, done) {
         displayMessage('error', response);
       },
       404: (response) => {
+        displayMessage('error', response);
+      },
+      409: (response) => {
         displayMessage('error', response);
       },
     },
@@ -65,9 +71,39 @@ function getUser() {
   };
 }
 
+function findGetParameters() {
+  const result = [];
+  window.location.search
+    .substr(1)
+    .split('&')
+    .forEach((item) => {
+      const param = item.split('=');
+      result.push(param);
+    });
+  return result;
+}
+
+function checkMessages() {
+  const params = findGetParameters();
+  params.forEach((param) => {
+    switch (param[0]) {
+      case 'success-msg':
+        displayMessage('success', unescape(param[1]));
+        break;
+      case 'fail-msg':
+        displayMessage('error', unescape(param[1]));
+        break;
+      default:
+        break;
+    }
+  });
+  const cleanUri = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
+  window.history.replaceState({}, document.title, cleanUri);
+}
+
 $(() => {
   $('#cr_year').html(new Date().getFullYear());
-
+  checkMessages();
   $('.page-logoutButton').click(() => {
     document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     window.location.href = '/';

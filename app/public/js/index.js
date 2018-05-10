@@ -35,7 +35,9 @@ $('.register-button').click(function register(ev) {
   }, (err, res) => {
     if (!err) {
       setCookie('jwt', res.token);
-      location.reload();
+      window.location.href = '/?success-msg=Successfully registered.';
+    } else {
+      console.log('err :', err);
     }
   });
 });
@@ -52,7 +54,9 @@ $('.login-button').click(function login(ev) {
   }, (err, res) => {
     if (!err) {
       setCookie('jwt', res.token);
-      location.reload();
+      window.location.href = '/?success-msg=Login successful.';
+    } else {
+      console.log('err :', err);
     }
   });
 });

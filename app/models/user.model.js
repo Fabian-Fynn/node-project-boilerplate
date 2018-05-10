@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 import encrypt from '../services/encryption.service';
+import uniqueValidator from "mongoose-unique-validator";
 
 const Schema = mongoose.Schema;
 
@@ -14,6 +15,7 @@ const userSchema = new Schema(
       email: {
         type: String,
         index: true,
+        unique: true,
       },
       password: {
         type: String,
@@ -28,6 +30,8 @@ const userSchema = new Schema(
     retainKeyOrder: true, // will be default in Mongoose v5
   },
 );
+
+userSchema.plugin(uniqueValidator);
 
 userSchema.pre('save', function pre(next) {
   this.local.password = encrypt.password(this.local.password);

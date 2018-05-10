@@ -4,7 +4,7 @@ function updateUser(options) {
       if (err) {
         return console.error(err);
       }
-      location.reload();
+      window.location.href = '/admin?success-msg=User updated successfully.';
     });
 }
 
@@ -33,7 +33,7 @@ $('.item-roles, .item-name').keyup(function (e) {
 $('.page-button_user_remove_provisional').click(() => {
   sendRequest({ url: '/admin/user/remove-provisional', method: 'DELETE' },
     () => {
-      location.reload();
+      window.location.href = '/admin?success-msg=User updated successfully.';
     });
 });
 
@@ -58,7 +58,7 @@ $('.card-form_button_delete').click(function (el) {
     method: 'DELETE',
   },
     () => {
-      location.reload();
+      window.location.href = '/admin?success-msg=User deleted successfully.';
     });
 });
 

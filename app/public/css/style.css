@@ -176,7 +176,6 @@ input {
   position: absolute;
   padding-left: 15vw;
   padding-right: 15vw;
-  border-bottom: 1px solid #528c6f;
   box-sizing: border-box; }
   @media (max-width: 1023px) {
     .page-Header {
