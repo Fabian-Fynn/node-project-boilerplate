@@ -10,7 +10,8 @@
     "test-ci": "jest --coverage --no-colors --forceExit",
     "start-production": "cross-env NODE_ENV=production npm run build",
     "start": "cross-env NODE_ENV=development nodemon --watch app --exec babel-node app/server.js",
-    "clean-build": "rm -rf ./dist"
+    "clean-build": "rm -rf ./dist",
+    "scss-watch": "sass --watch app/public/scss:app/public/css"
   },
   "husky": {
     "hooks": {
