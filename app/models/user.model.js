@@ -34,8 +34,14 @@ const userSchema = new Schema(
 userSchema.plugin(uniqueValidator);
 
 userSchema.pre('save', function pre(next) {
-  this.local.password = encrypt.password(this.local.password);
+  if (this.local.password) {
+    this.local.password = encrypt.password(this.local.password);
+  }
   next();
+});
+
+userSchema.pre('update', (next) => {
+  throw new Error('Use save to update. This ensures password hashing.');
 });
 
 userSchema.methods.comparePasswords = function comparePasswords(passwordToCompare, next) {

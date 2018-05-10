@@ -62,33 +62,23 @@ const UserController = () => {
   };
 
   const update = (req, res) => {
-    // because we later have values that are arrays that needs to be pased
-    // we use findById and then update
     User.findById(req.user._id)
-      .then((user) => {
-        if (!user) {
+      .then((foundUser) => {
+        if (!foundUser) {
           return res.status(404).json({ error: `User with id: ${req.user._id} not found` });
         }
 
-        const name = req.body.name ? req.body.name : user.name;
-        const email = req.body.email ? req.body.email : user.email;
+        const user = foundUser;
 
-        const updateUser = {
-          name,
-          'local.email': email,
-        };
+        user.name = req.body.name ? req.body.name : user.name;
+        user.local.email = req.body.email ? req.body.email : user.local.email;
 
-        return User.update({ _id: req.user._id }, updateUser)
-          .then(() => {
-            User.findById(req.user._id)
-              .then((updatedUser) => {
-                return res.redirect('/user/user-settings?success-msg=User updated successfully.');
-              });
-          })
-          .catch((err) => /* istanbul ignore next: hard to reproduce */ {
-            console.error(err);
-            return res.status(500).json({ error: `Could not update User with id: ${req.user._id}` });
-          });
+        if (req.body.password) {
+          user.local.password = req.body.password;
+        }
+
+        user.save();
+        return res.redirect('/user/user-settings?success-msg=User updated successfully.');
       })
       .catch((err) => /* istanbul ignore next: hard to reproduce */ {
         console.error(err);
