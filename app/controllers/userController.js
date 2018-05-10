@@ -93,17 +93,17 @@ const UserController = () => {
   };
 
   const destroy = (req, res) => {
-    User.findByIdAndRemove(req.params.userId)
+    User.findByIdAndRemove(req.user._id)
       .then((user) => {
         if (!user) {
-          return res.status(404).json({ error: `User with id: ${req.params.userId} not found` });
+          return res.status(404).json({ error: `User with id: ${req.user._id} not found` });
         }
 
-        return res.status(200).json({ message: `Successfully destroyed User with ${req.params.userId}` });
+        return res.status(200).json({ message: `Successfully destroyed User with ${req.user._id}` });
       })
       .catch((err) => /* istanbul ignore next: hard to reproduce */ {
         console.error(err);
-        return res.status(500).json({ error: `Could not destroy User with id ${req.params.userId}` });
+        return res.status(500).json({ error: `Could not destroy User with id ${req.user._id}` });
       });
   };
 

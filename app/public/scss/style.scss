@@ -118,7 +118,7 @@ button {
 
   &:hover {
     color: $button-inverse;
-    border: 2px $button-inverse solid;
+    // border: 2px $button-inverse solid;
     background: $button-color;
   }
 
@@ -130,7 +130,7 @@ button {
   &.green:hover, &.green.inverse {
     background: $color-highlight;
     color: $button-green-inverse;
-    border: 2px $button-green-inverse solid;
+    // border: 2px $button-green-inverse solid;
   }
 
   &.red, &.red.inverse:hover {
@@ -142,7 +142,7 @@ button {
   &.red:hover, &.red.inverse {
     background: $button-red-color;
     color: $button-red-inverse;
-    border: 2px $button-red-inverse solid;
+    // border: 2px $button-red-inverse solid;
   }
 
   &.blue, &.blue.inverse:hover {
@@ -794,5 +794,18 @@ input {
       opacity: 1;
       display: block;
     }
+  }
+}
+
+.modal-header {
+  min-height: 55px;
+
+  .modal-title {
+    float: left;
+    font-size: 150%;
+  }
+
+  .close {
+    margin-top: 3px;
   }
 }
