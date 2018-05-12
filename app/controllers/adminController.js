@@ -1,4 +1,5 @@
 import User from '../models/user.model';
+import config from '../config';
 
 const env = process.env.NODE_ENV || 'production';
 
@@ -9,7 +10,15 @@ const adminController = () => {
         if (!users) {
           return res.status(404).json({ error: 'No Users found' });
         }
-        return res.render('admin_area', { page: 'admin', env, users, roles: req.user.roles });
+        return res.render('admin_area', {
+          page: 'admin',
+          env,
+          users,
+          roles: req.user.roles,
+          projectName: config.projectName,
+          copyrightHolder: config.copyrightHolder,
+          externalAssetUrl: config.externalAssetUrl,
+        });
       })
       .catch((err) => /* istanbul ignore next: hard to reproduce */ {
         console.error(err);

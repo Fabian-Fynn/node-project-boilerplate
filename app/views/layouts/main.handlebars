@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   {{#if title}}
-    <title>Project Name - {{title}}</title>
+    <title>{{ projectName }} - {{title}}</title>
     {{~^~}}
-    <title>Project Name</title>
+    <title>{{ projectName }}</title>
   {{/if}}
   <link rel="stylesheet" href="{{static 'css/vendor/bootstrap.min.css'}}">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:700" rel="stylesheet">
@@ -15,45 +15,36 @@
   <link rel="stylesheet" href="{{static 'css/vendor/bootstrap-theme.min.css'}}">
   <link rel="stylesheet" href="{{static 'css/style.css'}}">
   <link rel="stylesheet" href="{{static 'css/' page '.css'}}">
-  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/apple-touch-icon-57x57.png"
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ externalAssetUrl }}/favicons/{{env}}/apple-touch-icon-57x57.png"
   />
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/apple-touch-icon-114x114.png"
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ externalAssetUrl }}/favicons/{{env}}/apple-touch-icon-114x114.png"
   />
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/apple-touch-icon-72x72.png"
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ externalAssetUrl }}/favicons/{{env}}/apple-touch-icon-72x72.png"
   />
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/apple-touch-icon-144x144.png"
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ externalAssetUrl }}/favicons/{{env}}/apple-touch-icon-144x144.png"
   />
-  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/apple-touch-icon-60x60.png"
+  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ externalAssetUrl }}/favicons/{{env}}/apple-touch-icon-60x60.png"
   />
-  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/apple-touch-icon-120x120.png"
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ externalAssetUrl }}/favicons/{{env}}/apple-touch-icon-120x120.png"
   />
-  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/apple-touch-icon-76x76.png"
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ externalAssetUrl }}/favicons/{{env}}/apple-touch-icon-76x76.png"
   />
-  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/apple-touch-icon-152x152.png"
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ externalAssetUrl }}/favicons/{{env}}/apple-touch-icon-152x152.png"
   />
-  <link rel="icon" type="image/png" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/favicon-196x196.png"
-    sizes="196x196" />
-  <link rel="icon" type="image/png" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/favicon-96x96.png"
-    sizes="96x96" />
-  <link rel="icon" type="image/png" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/favicon-32x32.png"
-    sizes="32x32" />
-  <link rel="icon" type="image/png" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/favicon-16x16.png"
-    sizes="16x16" />
-  <link rel="icon" type="image/png" href="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/favicon-128.png"
-    sizes="128x128" />
-  <meta name="msapplication-TileImage" content="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/mstile-144x144.png"
-  />
-  <meta name="msapplication-square70x70logo" content="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/mstile-70x70.png"
-  />
-  <meta name="msapplication-square150x150logo" content="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/mstile-150x150.png"
-  />
-  <meta name="msapplication-wide310x150logo" content="http://assets.fabianhoffmann.io/project-boilerplate/favicons/{{env}}/mstile-310x150.png"
-  />
-  <meta name="msapplication-square310x310logo" content="http://assets.fabianhoffmann.io/project-boilerplate/project-boilerplate/favicons/{{env}}/mstile-310x310.png"
+  <link rel="icon" type="image/png" href="{{ externalAssetUrl }}/favicons/{{env}}/favicon-196x196.png" sizes="196x196" />
+  <link rel="icon" type="image/png" href="{{ externalAssetUrl }}/favicons/{{env}}/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="{{ externalAssetUrl }}/favicons/{{env}}/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="{{ externalAssetUrl }}/favicons/{{env}}/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="{{ externalAssetUrl }}/favicons/{{env}}/favicon-128.png" sizes="128x128" />
+  <meta name="msapplication-TileImage" content="{{ externalAssetUrl }}/favicons/{{env}}/mstile-144x144.png" />
+  <meta name="msapplication-square70x70logo" content="{{ externalAssetUrl }}/favicons/{{env}}/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="{{ externalAssetUrl }}/favicons/{{env}}/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="{{ externalAssetUrl }}/favicons/{{env}}/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="{{ externalAssetUrl }}/project-boilerplate/favicons/{{env}}/mstile-310x310.png"
   />
   <link rel="manifest" href="{{static '/manifest.json'}}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="application-name" content="ProjectName" />
+  <meta name="application-name" content="{{ projectName }}" />
   <!-- Change Name -->
 </head>
 
@@ -66,7 +57,7 @@
   <div class="page-Flash"></div>
   <div class='page-Header page-Header_idx'>
     <a {{{link '/' auth}}}>
-      <h1 class='page-Header_title'> Project Name </h1>
+      <h1 class='page-Header_title'> {{ projectName }} </h1>
     </a>
     <div class="page-Header_menu">
       <ul>
@@ -86,7 +77,7 @@
   </div>
   {{{body}}}
   <div class="page-footer">
-    &#169; <span id='cr_year'>2018</span> <a href="http://fabianhoffmann.io" target="_blank">Fabian Hoffmann</a>
+    &#169; <span id='cr_year'>2018</span> <a href="{{ copyrightHolder.url }}" target="_blank">{{ copyrightHolder.name }}</a>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <script src="{{static '/socket.io/socket.io.js'}}"></script>

@@ -58,6 +58,9 @@ const renderUnauthIndex = (res) => (
   res.render('index', {
     page: 'index',
     env,
+    projectName: config.projectName,
+    copyrightHolder: config.copyrightHolder,
+    externalAssetUrl: config.externalAssetUrl,
   })
 );
 
@@ -74,6 +77,9 @@ app.get('/', (req, res, next) => {
           page: 'index',
           env,
           roles: authenticatedUser.roles,
+          projectName: config.projectName,
+          copyrightHolder: config.copyrightHolder,
+          externalAssetUrl: config.externalAssetUrl,
         });
       }
       return res.render('home', {
@@ -82,18 +88,31 @@ app.get('/', (req, res, next) => {
         roles: authenticatedUser.roles,
         userMail: authenticatedUser.local.email,
         userName: authenticatedUser.name,
+        projectName: config.projectName,
+        copyrightHolder: config.copyrightHolder,
+        externalAssetUrl: config.externalAssetUrl,
       });
     }
     return res.render('index', {
       page: 'index',
       env,
+      projectName: config.projectName,
+      copyrightHolder: config.copyrightHolder,
+      externalAssetUrl: config.externalAssetUrl,
     });
   })(req, res, next);
 });
 
 app.use((req, res) => {
   res.status(404);
-  res.render('404', { css: 'index', page: '404', env });
+  res.render('404', {
+    css: 'index',
+    page: '404',
+    env,
+    projectName: config.projectName,
+    copyrightHolder: config.copyrightHolder,
+    externalAssetUrl: config.externalAssetUrl,
+  });
 });
 
 server.listen(config.port, (err) => {

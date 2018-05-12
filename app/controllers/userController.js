@@ -1,6 +1,7 @@
 import passport from 'passport';
 import auth from '../services/auth.service';
 import User from '../models/user.model';
+import config from '../config';
 
 const UserController = () => {
   const get = (req, res) => {
@@ -140,6 +141,9 @@ const UserController = () => {
           email: authenticatedUser.local.email,
           name: authenticatedUser.name,
         },
+        projectName: config.projectName,
+        copyrightHolder: config.copyrightHolder,
+        externalAssetUrl: config.externalAssetUrl,
       });
     })(req, res, next);
   };
